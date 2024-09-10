@@ -1,6 +1,7 @@
 ## TTADotNetCore
 
 ## Day-1
+**What is C#?**
 C#
 C# .NET
 
@@ -26,5 +27,5 @@ windows
 UI + Business Logic + Data Access => Database
 
 ## Day-2
-** ADO.NET connet to sql **
+**ADO.NET connet to sql**
 
