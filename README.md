@@ -37,6 +37,7 @@ UI + Business Logic + Data Access => Database
  ---
 **C# -> SQL query**
 -- Installing Nuget
-== Ctrl + .
+-- Ctrl + .
+-- Fn + F9 ( Breakpoint ) , F10 ( Step down)
 
 
