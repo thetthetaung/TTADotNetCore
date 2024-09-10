@@ -28,4 +28,15 @@ UI + Business Logic + Data Access => Database
 
 ## Day-2
 **ADO.NET connet to sql**
+-C# -> Database
+---
+1. ADO.Net
+1. Dapper (ORM) - Object Relational Mapper
+1. EFCore -> Entity Framework (ORM)
+
+ ---
+**C# -> SQL query**
+-- Installing Nuget
+== Ctrl + .
+
 
