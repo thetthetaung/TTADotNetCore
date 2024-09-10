@@ -1,4 +1,6 @@
 ## TTADotNetCore
+
+## Day-1
 C#
 C# .NET
 
@@ -23,9 +25,6 @@ windows
 
 UI + Business Logic + Data Access => Database
 
-Kpay
+## Day-2
+** ADO.NET connet to sql **
 
-Mobile No => Transfer 
-
-Mobile No Check
-10000
