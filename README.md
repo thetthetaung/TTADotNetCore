@@ -36,8 +36,10 @@ UI + Business Logic + Data Access => Database
 
  ---
 **C# -> SQL query**
--- Installing Nuget
+-- using Nuget to install sqlclient
 -- Ctrl + .
 -- Fn + F9 ( Breakpoint ) , F10 ( Step down)
+-- select @@SERVERNAME ( to know servername )
+-- use @ to support multi-line 
 
 
