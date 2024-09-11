@@ -28,9 +28,19 @@ string query = @"SELECT [BlogId]
   FROM [dbo].[Tbl_Blog] WHERE DeleteFlag=0";
 
 SqlCommand cmd = new SqlCommand(query,connetion);
-SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-DataTable dt=new DataTable();
-adapter.Fill(dt);
+//SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+//DataTable dt=new DataTable();
+//adapter.Fill(dt);
+
+SqlDataReader reader = cmd.ExecuteReader();
+while (reader.Read())
+{
+    Console.WriteLine(reader["BlogId"]);
+    Console.WriteLine(reader["BlogTitle"]);
+    Console.WriteLine(reader["BlogAuthor"]);
+    Console.WriteLine(reader["BlogContent"]);
+    Console.WriteLine(reader["DeleteFlag"]);
+}
 
 //dt = adapter.Execute();
 //foreach (DataRow dr in dt.Rows)
@@ -48,13 +58,13 @@ Console.WriteLine("Connection closed!");
 
 //DataSet ->DataTable->DataRow->DataColumn
 
-foreach (DataRow dr in dt.Rows)
-{
-    Console.WriteLine(dr["BlogId"]);
-    Console.WriteLine(dr["BlogTitle"]);
-    Console.WriteLine(dr["BlogAuthor"]); 
-    Console.WriteLine(dr["BlogContent"]);
-    Console.WriteLine(dr["DeleteFlag"]);
-}
+//foreach (DataRow dr in dt.Rows)
+//{
+//    Console.WriteLine(dr["BlogId"]);
+//    Console.WriteLine(dr["BlogTitle"]);
+//    Console.WriteLine(dr["BlogAuthor"]); 
+//    Console.WriteLine(dr["BlogContent"]);
+//    Console.WriteLine(dr["DeleteFlag"]);
+//}
 //foreach loop is okay after closing connection beacuse we already have all the data in the datatable
 //If we want to get row by row data, foreach is okay to place before closing connection
