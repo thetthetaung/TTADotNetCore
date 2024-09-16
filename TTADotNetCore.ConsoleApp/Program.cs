@@ -73,32 +73,53 @@ Console.WriteLine("Connection closed!");
 //If we want to get row by row data, foreach is okay to place before closing connection
 
 */
-Console.WriteLine("--- Blog Insert Form ---");
-Console.WriteLine("Blog Title : ");
-string title=Console.ReadLine();
+//Console.WriteLine("--- Blog Insert Form ---");
+//Console.WriteLine("Blog Title : ");
+//string title=Console.ReadLine();
 
-Console.WriteLine("Blog Author: ");
-string author=Console.ReadLine();
+//Console.WriteLine("Blog Author: ");
+//string author=Console.ReadLine();
 
-Console.WriteLine("Blog Content: ");
-string content=Console.ReadLine();
+//Console.WriteLine("Blog Content: ");
+//string content=Console.ReadLine();
 
-string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
-SqlConnection connection=new SqlConnection(connectionString);
-connection.Open();
-string insertQuery = $@"INSERT INTO [dbo].[Tbl_Blog]
-           ([BlogTitle]
-           ,[BlogAuthor]
-           ,[BlogContent]
-           ,[DeleteFlag])
-     VALUES
-           ('{title}'
-           ,'{author}'
-           ,'{content}'
-           ,0)";
-SqlCommand cmd=new SqlCommand(insertQuery, connection);
-SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-DataTable dt=new DataTable();
-adapter.Fill(dt);
+//string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
+//SqlConnection connection=new SqlConnection(connectionString);
+//connection.Open();
+//string insertQuery = $@"INSERT INTO [dbo].[Tbl_Blog]
+//           ([BlogTitle]
+//           ,[BlogAuthor]
+//           ,[BlogContent]
+//           ,[DeleteFlag])
+//     VALUES
+//           (@BlogTitle
+//           ,@BlogAuthor
+//           ,@BlogContent
+//           ,0)";
+//SqlCommand cmd=new SqlCommand(insertQuery, connection);
+//cmd.Parameters.AddWithValue("@BlogTitle", title);
+//cmd.Parameters.AddWithValue("@BlogAuthor",author);
+//cmd.Parameters.AddWithValue("@BlogContent",content);
+////SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+////DataTable dt=new DataTable();
+////adapter.Fill(dt);
 
-connection.Close();
+//int result=cmd.ExecuteNonQuery();
+////if(result==1)
+////{
+////    Console.WriteLine("Saving successfully.");
+////}
+////else
+////{
+////    Console.WriteLine("Saving failed.");
+////}
+
+//Console.WriteLine(result==1 ? "Saving successfuly.":"Saving failed.");
+//connection.Close();
+
+AdoDotNetExample adoDotNetExample=new AdoDotNetExample();
+//adoDotNetExample.Read();
+//adoDotNetExample.Create();
+//adoDotNetExample.Edit();
+//adoDotNetExample.Update();
+adoDotNetExample.Delete();
