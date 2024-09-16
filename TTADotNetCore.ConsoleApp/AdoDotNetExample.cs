@@ -148,13 +148,13 @@ namespace TTADotNetCore.ConsoleApp
             string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            string insertQuery = $@"UPDATE [dbo].[Tbl_Blog]
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
             SET [BlogTitle] = @BlogTitle
                 ,[BlogAuthor] = @BlogAuthor
                 ,[BlogContent] = @BlogContent
                 ,[DeleteFlag] = 0
             WHERE BlogId=@BlogId";
-            SqlCommand cmd = new SqlCommand(insertQuery, connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
@@ -179,15 +179,12 @@ namespace TTADotNetCore.ConsoleApp
             string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
-            string insertQuery = $@"DELETE FROM [dbo].[Tbl_Blog]
-      WHERE BlogId=@BlogId";
-            SqlCommand cmd = new SqlCommand(insertQuery, connection);
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+            SET [DeleteFlag] = 1
+            WHERE BlogId=@BlogId";
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
-            //cmd.Parameters.AddWithValue("@BlogTitle", title);
-            //cmd.Parameters.AddWithValue("@BlogAuthor", author);
-            //cmd.Parameters.AddWithValue("@BlogContent", content);
-
-
+            
             int result = cmd.ExecuteNonQuery();
 
 
