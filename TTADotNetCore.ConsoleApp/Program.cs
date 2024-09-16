@@ -1,10 +1,13 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Channels;
+using TTADotNetCore.ConsoleApp;
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 //Console.WriteLine();
-Console.ReadLine();
+//Console.ReadLine();
 //Console.ReadKey();
 
 //markdown
@@ -12,29 +15,29 @@ Console.ReadLine();
 //7.9.2024
 //Day-2 Start
 
-string connectionString = "Data Source=.;Initial Catalog=DotNetCore;User ID=sa;Password=sa@123;";
-SqlConnection connetion = new SqlConnection(connectionString);
+//string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123;";
+//SqlConnection connetion = new SqlConnection(connectionString);
 
-Console.WriteLine("Connection string is : "+connectionString);
-Console.WriteLine("Connetion opening ...........");
-connetion.Open();
-Console.WriteLine("Connetion opened!");
+//Console.WriteLine("Connection string is : "+ connetion);
+//Console.WriteLine("Connetion opening ...........");
+//connetion.Open();
+//Console.WriteLine("Connetion opened!");
 
-string query = @"SELECT [BlogId]
-      ,[BlogTitle]
-      ,[BlogAuthor]
-      ,[BlogContent]
-      ,[DeleteFlag]
-  FROM [dbo].[Tbl_Blog] WHERE DeleteFlag=0";
+//string query = @"SELECT [BlogId]
+//      ,[BlogTitle]
+//      ,[BlogAuthor]
+//      ,[BlogContent]
+//      ,[DeleteFlag]
+//  FROM [dbo].[Tbl_Blog] WHERE DeleteFlag=0";
 
-SqlCommand cmd = new SqlCommand(query,connetion);
+//SqlCommand cmd = new SqlCommand(query,connetion);
 //SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 //DataTable dt=new DataTable();
 //adapter.Fill(dt);
 
-SqlDataReader reader = cmd.ExecuteReader();
-while (reader.Read())
-{
+//SqlDataReader reader = cmd.ExecuteReader();
+//while (reader.Read())
+/*{
     Console.WriteLine(reader["BlogId"]);
     Console.WriteLine(reader["BlogTitle"]);
     Console.WriteLine(reader["BlogAuthor"]);
@@ -68,3 +71,34 @@ Console.WriteLine("Connection closed!");
 //}
 //foreach loop is okay after closing connection beacuse we already have all the data in the datatable
 //If we want to get row by row data, foreach is okay to place before closing connection
+
+*/
+Console.WriteLine("--- Blog Insert Form ---");
+Console.WriteLine("Blog Title : ");
+string title=Console.ReadLine();
+
+Console.WriteLine("Blog Author: ");
+string author=Console.ReadLine();
+
+Console.WriteLine("Blog Content: ");
+string content=Console.ReadLine();
+
+string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
+SqlConnection connection=new SqlConnection(connectionString);
+connection.Open();
+string insertQuery = $@"INSERT INTO [dbo].[Tbl_Blog]
+           ([BlogTitle]
+           ,[BlogAuthor]
+           ,[BlogContent]
+           ,[DeleteFlag])
+     VALUES
+           ('{title}'
+           ,'{author}'
+           ,'{content}'
+           ,0)";
+SqlCommand cmd=new SqlCommand(insertQuery, connection);
+SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+DataTable dt=new DataTable();
+adapter.Fill(dt);
+
+connection.Close();
