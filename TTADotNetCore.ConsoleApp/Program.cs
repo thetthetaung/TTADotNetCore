@@ -117,9 +117,17 @@ Console.WriteLine("Connection closed!");
 //Console.WriteLine(result==1 ? "Saving successfuly.":"Saving failed.");
 //connection.Close();
 
-AdoDotNetExample adoDotNetExample=new AdoDotNetExample();
+//AdoDotNetExample adoDotNetExample=new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Create();
 //adoDotNetExample.Edit();
 //adoDotNetExample.Update();
-adoDotNetExample.Delete();
+//adoDotNetExample.Delete();
+
+DapperExample dapperExample=new DapperExample();
+//dapperExample.Read();
+//dapperExample.Create("B_Title","B_Author","B_Content");
+//dapperExample.Edit(1);
+//dapperExample.Edit(4);
+//dapperExample.Update();
+dapperExample.Delete();
