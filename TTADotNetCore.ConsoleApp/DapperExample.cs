@@ -32,7 +32,7 @@ namespace TTADotNetCore.ConsoleApp
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string query = "select * from tbl_blog where DeleteFlag=0;";
-                var lst = db.Query<BlogDataModel>(query).ToList();
+                var lst = db.Query<BlogDapperDataModel>(query).ToList();
                 foreach (var item in lst)
                 {
                     Console.WriteLine("\n");
@@ -60,7 +60,7 @@ namespace TTADotNetCore.ConsoleApp
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                int result=db.Execute(query,new BlogDataModel
+                int result=db.Execute(query,new BlogDapperDataModel
                 {
                     BlogTitle=title,
                     BlogAuthor=author,
@@ -77,7 +77,7 @@ namespace TTADotNetCore.ConsoleApp
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string query = "select * from tbl_blog where DeleteFlag=0 and BlogId=@BlogId;";
-                var item = db.Query<BlogDataModel>(query,new
+                var item = db.Query<BlogDapperDataModel>(query,new
                 {
                     BlogId=id
                 }).FirstOrDefault();
@@ -123,7 +123,7 @@ namespace TTADotNetCore.ConsoleApp
 
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                int result = db.Execute(query, new BlogDataModel
+                int result = db.Execute(query, new BlogDapperDataModel
                 {
                     BlogId=id,
                     BlogTitle = title,

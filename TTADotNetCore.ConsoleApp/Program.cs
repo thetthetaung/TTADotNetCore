@@ -124,10 +124,16 @@ Console.WriteLine("Connection closed!");
 //adoDotNetExample.Update();
 //adoDotNetExample.Delete();
 
-DapperExample dapperExample=new DapperExample();
+//DapperExample dapperExample=new DapperExample();
 //dapperExample.Read();
 //dapperExample.Create("B_Title","B_Author","B_Content");
 //dapperExample.Edit(1);
 //dapperExample.Edit(4);
 //dapperExample.Update();
-dapperExample.Delete();
+//dapperExample.Delete();
+
+EFCoreExample eFCoreExample=new EFCoreExample();
+//eFCoreExample.Read();
+//eFCoreExample.Create("EF-Test", "EF-Test", "EF-Test");
+//eFCoreExample.Edit(5);
+eFCoreExample.Update(5,"Test","Test","Test");
