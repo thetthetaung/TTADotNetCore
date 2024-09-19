@@ -42,4 +42,11 @@ UI + Business Logic + Data Access => Database
 -- select @@SERVERNAME ( to know servername )
 -- use @ to support multi-line 
 
+## Day-3
+-- DotNetCore CRUD
+
+## Day-4
+-- Dapper CRUD
+-- EFCore CRUD
+
 
