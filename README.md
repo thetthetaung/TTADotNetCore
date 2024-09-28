@@ -26,7 +26,7 @@ windows
 
 UI + Business Logic + Data Access => Database
 
-## Day-2
+## Day-2 
 **ADO.NET connet to sql**
 -C# -> Database
 ---
@@ -48,5 +48,12 @@ UI + Business Logic + Data Access => Database
 ## Day-4
 -- Dapper CRUD
 -- EFCore CRUD
+
+## Day-5
+- databse first
+dotnet tool install --global dotnet-ef --version7
+- - Create Class libray project ( dll )
+- install entitiiyframework tools & design
+- dotnet ef dbcontext scaffold "Server=THETTHETAUN8E36\TTASQLEXPRESS;Database=TTADotNetCoreDB;User Id=sa;Password=sa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
 
 

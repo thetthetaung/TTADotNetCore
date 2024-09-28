@@ -134,6 +134,6 @@ Console.WriteLine("Connection closed!");
 
 EFCoreExample eFCoreExample=new EFCoreExample();
 //eFCoreExample.Read();
-//eFCoreExample.Create("EF-Test", "EF-Test", "EF-Test");
+eFCoreExample.Create("EF-Test", "EF-Test", "EF-Test");
 //eFCoreExample.Edit(5);
-eFCoreExample.Update(5,"Test","Test","Test");
+//eFCoreExample.Update(5,"Test","Test","Test");
