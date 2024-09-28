@@ -15,7 +15,10 @@ namespace TTADotNetCore.RestApi.Controllers
         [HttpGet]
         public IActionResult GetBlogs()
         {
-            var lst=_db.TblBlogs.AsNoTracking().ToList();
+            var lst=_db.TblBlogs
+                .AsNoTracking()
+                .Where(x=>x.DeleteFlag==false)
+                .ToList();
             return Ok(lst);
         }
 
@@ -81,10 +84,20 @@ namespace TTADotNetCore.RestApi.Controllers
             _db.SaveChanges();
             return Ok();
         }
-        [HttpDelete]
-        public IActionResult DeleteBlog()
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
         {
-            return Ok();
+            var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+            if (item is null)
+            {
+                return NotFound();
+            }
+            item.DeleteFlag = true;
+            _db.Entry(item).State= EntityState.Modified;
+
+            //_db.Entry(item).State = EntityState.Deleted;
+            _db.SaveChanges();
+            return Ok(item);
         }
     }
 }
