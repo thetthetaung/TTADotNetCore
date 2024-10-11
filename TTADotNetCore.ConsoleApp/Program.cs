@@ -132,8 +132,11 @@ Console.WriteLine("Connection closed!");
 //dapperExample.Update();
 //dapperExample.Delete();
 
-EFCoreExample eFCoreExample=new EFCoreExample();
+//EFCoreExample eFCoreExample=new EFCoreExample();
 //eFCoreExample.Read();
-eFCoreExample.Create("EF-Test", "EF-Test", "EF-Test");
+//eFCoreExample.Create("EF-Test", "EF-Test", "EF-Test");
 //eFCoreExample.Edit(5);
 //eFCoreExample.Update(5,"Test","Test","Test");
+
+string query = " [BlogAuthor]=@BlogAuthor, ";
+Console.WriteLine(query.Substring(0,query.Length-2));
