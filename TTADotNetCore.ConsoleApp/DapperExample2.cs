@@ -76,6 +76,35 @@ namespace TTADotNetCore.ConsoleApp
             
 
         }
+
+        public void Update(string  title, string author, string content)
+        {
+            string query = $@"UPDATE [dbo].[Tbl_Blog]
+                             SET [BlogTitle] = @BlogTitle
+                              ,[BlogAuthor] = @BlogAuthor
+                             ,[BlogContent] = @BlogContent
+                             ,[DeleteFlag] = 0
+                            WHERE BlogId = @BlogId";
+
+            int result = _dapperService.Execute(query,new BlogDapperDataModel{
+                BlogTitle=title,
+                BlogAuthor=author,
+                BlogContent=content
+            });
+
+            Console.WriteLine(result==1? "Updating succesfully":"Updating failed!");
+        }
+        public void Delete(int id)
+        {
+            string query = @"UPDATE Tbl_Blog 
+                         SET DeleteFlag = 1 
+                         WHERE BlogId = @BlogId";
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            {
+                BlogId = id
+            });
+            Console.WriteLine(result == 1 ? "Deleting successful" : "Deleting failed!");
+        }
     }
 }
 
