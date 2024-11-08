@@ -58,3 +58,6 @@ dotnet tool install --global dotnet-ef --version7
 
 ## Day-6
 - WebApi
+## Day-7 ( 4.11.2024 ) 
+- Asp.Net Core Web API
+- MinimalApi

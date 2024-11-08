@@ -22,11 +22,11 @@ namespace TTADotNetCore.ConsoleApp
             Console.WriteLine("Connection opened.");
 
             string query = @"SELECT [BlogId]
-      ,[BlogTitle]
-      ,[BlogAuthor]
-      ,[BlogContent]
-      ,[DeleteFlag]
-  FROM [dbo].[Tbl_Blog] where DeleteFlag=0";
+                          ,[BlogTitle]
+                          ,[BlogAuthor]
+                          ,[BlogContent]
+                          ,[DeleteFlag]
+                      FROM [dbo].[Tbl_Blog] where DeleteFlag=0";
 
             SqlCommand cmd = new SqlCommand( query, connection );
             SqlDataReader reader = cmd.ExecuteReader();
@@ -46,27 +46,27 @@ namespace TTADotNetCore.ConsoleApp
         {
             Console.WriteLine("--- Blog Insert Form ---");
             Console.WriteLine("Blog Title : ");
-            string title = Console.ReadLine();
+            string title = Console.ReadLine()!;
 
             Console.WriteLine("Blog Author: ");
-            string author = Console.ReadLine();
+            string author = Console.ReadLine()!;
 
             Console.WriteLine("Blog Content: ");
-            string content = Console.ReadLine();
+            string content = Console.ReadLine()!;
 
             string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
             string insertQuery = $@"INSERT INTO [dbo].[Tbl_Blog]
-           ([BlogTitle]
-           ,[BlogAuthor]
-           ,[BlogContent]
-           ,[DeleteFlag])
-            VALUES
-           (@BlogTitle
-           ,@BlogAuthor
-           ,@BlogContent
-           ,0)";
+                                   ([BlogTitle]
+                                   ,[BlogAuthor]
+                                   ,[BlogContent]
+                                   ,[DeleteFlag])
+                                    VALUES
+                                   (@BlogTitle
+                                   ,@BlogAuthor
+                                   ,@BlogContent
+                                   ,0)";
             SqlCommand cmd = new SqlCommand(insertQuery, connection);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
@@ -93,18 +93,18 @@ namespace TTADotNetCore.ConsoleApp
         {
             Console.WriteLine("-- Blog Edit Form --");
             Console.Write("Blog Id:");
-            string id=Console.ReadLine();
+            string id=Console.ReadLine()!;
 
             string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             string query = @"SELECT [BlogId]
-      ,[BlogTitle]
-      ,[BlogAuthor]
-      ,[BlogContent]
-      ,[DeleteFlag]
-  FROM [dbo].[Tbl_Blog] where BlogId=@BlogId;";
+                          ,[BlogTitle]
+                          ,[BlogAuthor]
+                          ,[BlogContent]
+                          ,[DeleteFlag]
+                      FROM [dbo].[Tbl_Blog] where BlogId=@BlogId;";
 
             SqlCommand cmd=new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId",id);
@@ -174,7 +174,7 @@ namespace TTADotNetCore.ConsoleApp
         {
             Console.WriteLine("*** Delete Blog Form ***");
             Console.Write("Enter Blog Id - ");
-            string id = Console.ReadLine();
+            string id = Console.ReadLine()!;
 
             string connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123";
             SqlConnection connection = new SqlConnection(connectionString);

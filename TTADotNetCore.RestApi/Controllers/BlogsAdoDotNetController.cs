@@ -97,76 +97,80 @@ namespace TTADotNetCore.RestApi.Controllers
             connection.Close();
             return Ok(result > 0 ? "Updating succesful" : "Updating failed.");
         }
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, BlogViewModel blog)
+        {
+            string conditions = "";
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                conditions += " [BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                conditions += " [BlogContent] = @BlogContent, ";
+            }
+
+            if (conditions.Length == 0)
+            {
+                return BadRequest("Invalid Parameter!");
+            }
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+
+            connection.Open();
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                cmd.Parameters.AddWithValue("@BlogTitle", blog.Title);
+            }
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                cmd.Parameters.AddWithValue("@BlogAuthor", blog.Author);
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                cmd.Parameters.AddWithValue("@BlogContent", blog.Content);
+            }
+
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return Ok(result > 0 ? "Update Successful." : "Update Failed.");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id, BlogViewModel blog)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                            WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+
+            int result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            return Ok(result == 1 ? "Deleting Successful" : "Deleting Failed.");
+        }
+
     }
 
-        //[HttpPatch("{id}")]
-        //public IActionResult PatchBlog(int id, BlogViewModel blog)
-        //{
-        //SqlConnection connection = new SqlConnection(_connectionString);
-        //connection.Open();
-        //string conditions = "";
-        //    if(!string.IsNullOrEmpty(blog.Title))
-        //    {
-        //        conditions += " [BlogTitle]=@BlogTitle, ";
-        //    }
-        //    if (!string.IsNullOrEmpty(blog.Author))
-        //    {
-        //        conditions += " [BlogAuthor]=@BlogAuthor, ";
-        //    }
-        //    if (!string.IsNullOrEmpty(blog.Content))
-        //    {
-        //        conditions += " [BlogContent]=@BlogContent, ";
-        //    }
 
-        //    if (conditions.Length == 0)
-        //    {
-        //    return BadRequest("Invalid");
-        //    }
-
-        //    conditions=conditions.Substring(0,conditions.Length-2);
-
-           
-
-        //    string query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId=@BlogId";
-        //    SqlCommand cmd=new SqlCommand(query,connection);
-        //    cmd.Parameters.AddWithValue("@BlogId", id);
-        //    if(!string.IsNullOrEmpty(blog.Title))
-        //    {
-        //        cmd.Parameters.AddWithValue("@BlogTitle", blog.Title);
-        //    }
-        //    if (!string.IsNullOrEmpty(blog.Author))
-        //    {
-        //        cmd.Parameters.AddWithValue("@BlogAuthor", blog.Author);
-        //    }
-        //    if (!string.IsNullOrEmpty(blog.Content))
-        //    {
-        //        cmd.Parameters.AddWithValue("@BlogContent", blog.Content);
-
-        //    }
-
-        //    int result= cmd.ExecuteNonQuery();
-        //    connection.Close();
-        //    return Ok(result>0? "Updating succesful":"Updating failed.");
-        //}
-        //[HttpDelete("{id}")]
-        //public IActionResult DeleteBlog(int id)
-        //{
-          
-
-        //    SqlConnection connection = new SqlConnection(_connectionString);
-        //    connection.Open();
-        //    string query = $@"UPDATE [dbo].[Tbl_Blog]
-        //    SET [DeleteFlag] = 1
-        //    WHERE BlogId=@BlogId";
-        //    SqlCommand cmd = new SqlCommand(query, connection);
-        //    cmd.Parameters.AddWithValue("@BlogId", id);
-
-        //    int result = cmd.ExecuteNonQuery();
-
-
-        //    Console.WriteLine(result == 1 ? "Deleting successfuly." : "Deleting failed.");
-        //    connection.Close();
-        //    return Ok(result);
-        //}
-    }
+}
 
