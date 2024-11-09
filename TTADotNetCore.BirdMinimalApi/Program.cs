@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -39,9 +41,27 @@ app.MapGet("/weatherforecast", () =>
 app.MapGet("/birds", () =>
 {
     string folderPath = "Data/Birds.json";
-    var JsonStr = File.ReadAllText(folderPath);
-});
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
 
+    return Results.Ok(result.Tbl_Bird);
+})
+.WithName("GetBirds")
+.WithOpenApi();
+
+app.MapGet("/birds/{id}", (int id) =>
+{
+    string folderPath = "Data/Birds.json";
+    var jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    var item = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+
+    if (item is null) return Results.BadRequest("No data found.");
+
+    return Results.Ok(item);
+})
+.WithName("GetBird")
+.WithOpenApi();
 
 
 app.Run();
