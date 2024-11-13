@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TTADotNetCore.Database\TTADotNetCore.Database.csproj" />
+    <ProjectReference Include="..\TTADotNetCore.Shared\TTADotNetCore.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
