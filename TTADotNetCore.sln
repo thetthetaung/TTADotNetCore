@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTDotNetCore.MinimalApi", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTADotNetCore.BirdMinimalApi", "TTADotNetCore.BirdMinimalApi\TTADotNetCore.BirdMinimalApi.csproj", "{F0523973-E1DD-4C8B-8196-390B0F04D83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTADotNetCore.Domain", "TTADotNetCore.Domain\TTADotNetCore.Domain.csproj", "{7D9379C4-88E5-457C-8AB4-4D0DD462BD80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTADotNetCore.Domain", "TTADotNetCore.Domain\TTADotNetCore.Domain.csproj", "{7D9379C4-88E5-457C-8AB4-4D0DD462BD80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTADotnetCore.KpayApi", "TTADotnetCore.KpayApi\TTADotnetCore.KpayApi.csproj", "{6A6B54E3-EA14-4BE3-AA22-05989B7DCA1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{7D9379C4-88E5-457C-8AB4-4D0DD462BD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D9379C4-88E5-457C-8AB4-4D0DD462BD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D9379C4-88E5-457C-8AB4-4D0DD462BD80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6B54E3-EA14-4BE3-AA22-05989B7DCA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6B54E3-EA14-4BE3-AA22-05989B7DCA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6B54E3-EA14-4BE3-AA22-05989B7DCA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6B54E3-EA14-4BE3-AA22-05989B7DCA1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
