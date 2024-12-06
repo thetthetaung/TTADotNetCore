@@ -46,7 +46,7 @@ namespace TTADotNetCore.Domain.Features.Kpay
             }
             item.UserId = user.UserId;
             item.FullName = user.FullName;
-            item.MoobileNumber = user.MoobileNumber;
+            item.MobileNumber = user.MobileNumber;
             item.Balance = user.Balance;
             item.Pin = user.Pin;
             _db.Entry(item).State = EntityState.Modified;

@@ -18,8 +18,8 @@ namespace TTDotNetCore.MinimalApi.Endpoints.Blog
                 return Results.Ok(model);
 
             })
-.WithName("GetBlogs")
-.WithOpenApi();
+            .WithName("GetBlogs")
+            .WithOpenApi();
 
             app.MapGet("/blogs/{id}", (int id) =>
             {

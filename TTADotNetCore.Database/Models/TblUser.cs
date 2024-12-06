@@ -10,8 +10,9 @@ namespace TTADotNetCore.Database.Models
     {
         public int UserId { get; set; }
         public string? FullName { get; set; }
-        public string? MoobileNumber { get; set; }
-        public string? Balance { get; set; }
+        public string? MobileNumber { get; set; }
+        public decimal? Balance { get; set; }
         public string? Pin { get; set; }
+        public bool DeleteFlag { get; set; }
     }
 }

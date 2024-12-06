@@ -38,7 +38,7 @@ public partial class AppDbContext2 : DbContext
             entity.ToTable("Tbl_User");
 
             entity.Property(e => e.FullName).HasMaxLength(50);
-            entity.Property(e => e.MoobileNumber).HasMaxLength(11);
+            entity.Property(e => e.MobileNumber).HasMaxLength(11);
             entity.Property(e => e.Balance).HasMaxLength(50);
             entity.Property(e => e.Pin).HasMaxLength(50);
         });
