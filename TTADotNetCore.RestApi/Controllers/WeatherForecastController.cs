@@ -29,5 +29,11 @@ namespace TTADotNetCore.RestApi.Controllers
             })
             .ToArray();
         }
+
+        //public async Task<IActionResult> TestAsync() 
+        //{ 
+        //    HttpClient client = new HttpClient();
+        //    //return await client.GetAsync("birds");
+        //}
     }
 }

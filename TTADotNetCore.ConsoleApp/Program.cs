@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography.X509Certificates;
@@ -141,7 +142,14 @@ Console.WriteLine("Connection closed!");
 //string query = " [BlogAuthor]=@BlogAuthor, ";
 //Console.WriteLine(query.Substring(0,query.Length-2));
 
-DapperExample2 dapperExample2 = new DapperExample2();
-dapperExample2.Read();
+//DapperExample2 dapperExample2 = new DapperExample2();
+//dapperExample2.Read();
 
 Console.ReadKey();
+
+//Install Microsoft.Entensions.DependencyInjections
+var services=new ServiceCollection()
+    .AddSingleton<AdoDotNetExample>()
+    .BuildServiceProvider();
+var adoDotNetExample=services.GetRequiredService<AdoDotNetExample>();
+adoDotNetExample.Read();

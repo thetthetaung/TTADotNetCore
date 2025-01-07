@@ -10,12 +10,17 @@ namespace TTADotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogServiceController : ControllerBase
     {
-        public readonly BlogService _service;
+        public readonly IBlogService _service;
 
-        public BlogServiceController()
+        public BlogServiceController(IBlogService service)
         {
-            _service = new BlogService();
+            _service = service;
         }
+
+        //public BlogServiceController()
+        //{
+        //    _service = new BlogService();
+        //}
         [HttpGet]
         public ActionResult GetBlogs()
         {

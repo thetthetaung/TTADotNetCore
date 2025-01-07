@@ -12,7 +12,14 @@ namespace TTADotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogsAdoDotNetController : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123;TrustServerCertificate=true;";
+        //private readonly string _connectionString = "Data Source=THETTHETAUN8E36\\TTASQLEXPRESS;Initial Catalog=TTADotNetCoreDB;User ID=sa;Password=sa@123;TrustServerCertificate=true;";
+
+        private readonly string _connectionString;
+
+        public BlogsAdoDotNetController(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("DBConnection")!;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()

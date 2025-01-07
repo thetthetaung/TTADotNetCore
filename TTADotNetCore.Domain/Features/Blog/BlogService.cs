@@ -8,9 +8,16 @@ using TTADotNetCore.Database.Models;
 
 namespace TTADotNetCore.Domain.Features.Blog
 {
-    public class BlogService
+    public class BlogService : IBlogService
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        //private readonly AppDbContext _db = new AppDbContext();
+
+        private readonly AppDbContext _db;
+
+        public BlogService(AppDbContext db)
+        {
+            _db = db;
+        }
 
         public List<TblBlog> GetBlogs()
         {
@@ -56,15 +63,15 @@ namespace TTADotNetCore.Domain.Features.Blog
         {
             var item = _db.TblBlogs
                 .AsNoTracking()
-                .FirstOrDefault (x => x.BlogId == id);
-            if(item is null)
+                .FirstOrDefault(x => x.BlogId == id);
+            if (item is null)
             {
                 return false;
             }
-            _db.Entry (item).State = EntityState.Deleted;
-            int result=_db.SaveChanges();
+            _db.Entry(item).State = EntityState.Deleted;
+            int result = _db.SaveChanges();
             return result > 0;
-              
+
         }
     }
 }
