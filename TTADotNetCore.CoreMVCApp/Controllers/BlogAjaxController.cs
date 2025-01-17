@@ -5,19 +5,28 @@ using TTADotNetCore.Domain.Features.Blog;
 
 namespace TTADotNetCore.CoreMVCApp.Controllers
 {
-    public class BlogController : Controller
+    public class BlogAjaxController : Controller
     {
         private readonly IBlogService _blogService;
 
-        public BlogController(IBlogService blogService)
+        public BlogAjaxController(IBlogService blogService)
         {
             _blogService = blogService;
         }
-
-        public IActionResult Index()
+        // CRUD
+        // Read
+        [ActionName("Index")]
+        public IActionResult BlogList()
         {
             var lst=_blogService.GetBlogs();
-            return View(lst);
+            return View("BlogList",lst);
+        }
+
+        [ActionName("List")]
+        public IActionResult BlogListAjax()
+        {
+            var lst = _blogService.GetBlogs();
+            return Json(lst);
         }
 
         [ActionName("Create")]
@@ -30,6 +39,7 @@ namespace TTADotNetCore.CoreMVCApp.Controllers
         [ActionName("Save")]
         public IActionResult BlogSave(BlogRequestModel requestModel)
         {
+            MessageModel model;
             try
             {
                 _blogService.CreateBlog(new TblBlog
@@ -39,42 +49,59 @@ namespace TTADotNetCore.CoreMVCApp.Controllers
                     BlogContent = requestModel.Content
                 });
                 
-                //ViewBag.IsSuccess=true;
-                //ViewBag.Message = "Blog Created Successfully!";
-
                 TempData["IsSuccess"]=true;
                 TempData["Message"] = "Blog Created Successfully!";
+
+                model = new MessageModel(true,"Blog Ajax successfully created!");
             }
             catch (Exception ex)
             {
-                //ViewBag.IsSuccess=false;
-                //ViewBag.Message = ex.ToString();
-
                 TempData["IsSuccess"]=false;
                 TempData["Message"] = ex.ToString();
-                throw;
+
+                model=new MessageModel(false,ex.ToString());
+                //throw;
             }
-
-            return RedirectToAction("Index");
-
-            /*
-            var lst=_blogService.GetBlogs();
-            return View("Index",lst);
-             * */
+            return Json(model);
 
         }
 
-        //public IActionResult BlogDelete(int blogId)
-        //{
-        //    _blogService.DeleteBlog(blogId);
-        //    return RedirectToAction("Index");
-        //}
-
-        [ActionName("Delete")]
-        public IActionResult BlogDelete(int id)
+        public class MessageModel
         {
-            _blogService.DeleteBlog(id);
-            return RedirectToAction("Index");
+            public MessageModel() { }
+            public MessageModel(bool isSuccess, string message)
+            {
+                IsSuccess = isSuccess;
+                Message = message;
+            }
+
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public IActionResult BlogDelete(BlogRequestModel requestModel)
+        {
+            MessageModel model;
+
+            try
+            {
+                _blogService.DeleteBlog(requestModel.Id);
+                TempData["IsSuccess"] = true;
+                TempData["Message"] = "Blog deleted Successfully!";
+
+                model = new MessageModel(true, "Blog Ajax successfully deleted!");
+            }
+            catch (Exception ex)
+            {
+                TempData["IsSuccess"] = false;
+                TempData["Message"] = ex.ToString();
+
+                model = new MessageModel(false, ex.ToString());
+                //throw;
+            }
+            return Json(model);
         }
 
         [ActionName("Edit")]
@@ -95,6 +122,8 @@ namespace TTADotNetCore.CoreMVCApp.Controllers
         [ActionName("Update")]
         public IActionResult BlogUpdate(int id,BlogRequestModel requestModel)
         {
+            MessageModel model;
+
             try
             {
                 _blogService.UpdateBlog(id,new TblBlog
@@ -104,28 +133,21 @@ namespace TTADotNetCore.CoreMVCApp.Controllers
                     BlogContent = requestModel.Content
                 });
 
-                //ViewBag.IsSuccess=true;
-                //ViewBag.Message = "Blog Created Successfully!";
-
                 TempData["IsSuccess"] = true;
                 TempData["Message"] = "Blog Updated Successfully!";
+
+                model = new MessageModel(true, "Blog Ajax successfully updated!");
             }
             catch (Exception ex)
             {
-                //ViewBag.IsSuccess=false;
-                //ViewBag.Message = ex.ToString();
-
                 TempData["IsSuccess"] = false;
                 TempData["Message"] = ex.ToString();
-                throw;
+
+                model = new MessageModel(false, ex.ToString());
+                //throw;
             }
+            return Json(model);
 
-            return RedirectToAction("Index");
-
-            /*
-            var lst=_blogService.GetBlogs();
-            return View("Index",lst);
-             * */
 
         }
     }
