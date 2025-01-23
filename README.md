@@ -67,3 +67,11 @@ dotnet tool install --global dotnet-ef --version7
 - Deposit
 - Withdraw
 - History
+
+## Charts
+- https://apexcharts.com/docs/installation/
+- https://www.chartjs.org/docs/latest/getting-started/installation.html
+
+
+## AI
+-https://chat.deepseek.com/

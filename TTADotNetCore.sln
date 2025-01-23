@@ -30,7 +30,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTADotNetCore.ConsoleApp3",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTADotNetCore.RestApi2", "TTADotNetCore.RestApi2\TTADotNetCore.RestApi2.csproj", "{F4D06CD0-1F7F-46FA-9E88-CAA53005B8DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTADotNetCore.CoreMVCApp", "TTADotNetCore.CoreMVCApp\TTADotNetCore.CoreMVCApp.csproj", "{69480788-3286-43ED-B53A-B4F64B45310F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTADotNetCore.CoreMVCApp", "TTADotNetCore.CoreMVCApp\TTADotNetCore.CoreMVCApp.csproj", "{69480788-3286-43ED-B53A-B4F64B45310F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTADotNetCore.ChartWebApp", "TTADotNetCore.ChartWebApp\TTADotNetCore.ChartWebApp.csproj", "{338ABFB0-135B-43F8-8EBD-240AA438C685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +88,10 @@ Global
 		{69480788-3286-43ED-B53A-B4F64B45310F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69480788-3286-43ED-B53A-B4F64B45310F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69480788-3286-43ED-B53A-B4F64B45310F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338ABFB0-135B-43F8-8EBD-240AA438C685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338ABFB0-135B-43F8-8EBD-240AA438C685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338ABFB0-135B-43F8-8EBD-240AA438C685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338ABFB0-135B-43F8-8EBD-240AA438C685}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
