@@ -1,0 +1,38 @@
+﻿@model ApexChartDonutModel
+
+@{
+    int[] _series = Model.Series;
+    string[] _labels = Model.Labels;
+}
+
+<div id="chart"></div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        const _series = @Html.Raw(Json.Serialize(_series));
+        const _labels = @Html.Raw(Json.Serialize(_labels));
+
+        var options = {
+            series: _series,
+            chart: {
+                type: 'donut',
+            },
+            labels: _labels,
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}

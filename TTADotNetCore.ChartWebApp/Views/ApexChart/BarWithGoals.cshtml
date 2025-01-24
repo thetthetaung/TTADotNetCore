@@ -1,0 +1,51 @@
+﻿@model ApexChartBarWithGoalsModel
+
+@{
+    var series = Model.Series;
+}
+
+<div id="chart"></div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        const series = @Html.Raw(Json.Serialize(Model.Series));
+
+        var options = {
+            series: series,
+            chart: {
+                height: 350,
+                type: 'bar'
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            colors: ['#00E396'],
+            dataLabels: {
+                formatter: function(val, opt) {
+                    const goals =
+                        opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex]
+                            .goals;
+
+                    if (goals && goals.length) {
+                        return `${val} / ${goals[0].value}`;
+                    }
+                    return val;
+                }
+            },
+            legend: {
+                show: true,
+                showForSingleSeries: true,
+                customLegendItems: ['Actual', 'Expected'],
+                markers: {
+                    fillColors: ['#00E396', '#775DD0']
+                }
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}

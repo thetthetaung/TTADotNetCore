@@ -1,0 +1,42 @@
+﻿@model ApexChartBarChartModel
+
+@{
+    int[] _series = Model.Series;
+    string[] _categories = Model.Categories;
+}
+
+<div id="chart"></div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        const _series = @Html.Raw(Json.Serialize(_series));
+        const _categories = @Html.Raw(Json.Serialize(_categories));
+
+        var options = {
+            series: [{
+                data: _series
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 4,
+                    borderRadiusApplication: 'end',
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: _categories
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
+}
